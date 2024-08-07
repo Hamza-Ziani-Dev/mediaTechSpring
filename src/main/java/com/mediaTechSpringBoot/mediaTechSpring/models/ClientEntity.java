@@ -10,7 +10,9 @@ package com.mediaTechSpringBoot.mediaTechSpring.models;
 import java.io.Serializable;
 import java.util.List;
 
+// import javax.persistence.*;
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,9 +43,8 @@ public class ClientEntity implements Serializable {
 
 
 
-	// Relation OneToMany
+	// Relation One To Many    Client => Facture
 	@OneToMany(mappedBy = "client",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	// @JoinColumn(name = "client_id")
 	private List<FactureEntity> factures;
 	
 	

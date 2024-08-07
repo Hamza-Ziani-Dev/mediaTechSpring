@@ -1,11 +1,16 @@
 package com.mediaTechSpringBoot.mediaTechSpring.models;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 // import javax.persistence.Entity;
 // import javax.persistence.Table;
 
+// import jakarta.persistence.*;
+// import javax.persistence.*;
 import jakarta.persistence.*;
+
 // import jakarta.persistence.Id;
 // import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -24,7 +29,7 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class FactureEntity {
+public class FactureEntity  implements Serializable{
 
     @Id()
     private Integer id;
@@ -37,10 +42,14 @@ public class FactureEntity {
     private Date date;
 
 
-
-    // Relation ManyToOne
+    // Relation One To One    Facture => Client
     @ManyToOne
     private ClientEntity client;
+
+
+    //  Relation One To Many    Facture => LigneFacture
+    @OneToMany(mappedBy = "facture",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<LigneFactureEntity> ligneFacture;
 
 
 
